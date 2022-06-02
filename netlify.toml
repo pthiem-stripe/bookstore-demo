@@ -1,0 +1,5 @@
+[functions]
+  directory = "functions"
+
+[build]
+environment = {NEXT_PUBLIC_VERSION = "local"}

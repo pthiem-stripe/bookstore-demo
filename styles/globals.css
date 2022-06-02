@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  @apply bg-gray-100;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+
+button{
+  @apply uppercase cursor-pointer text-white font-bold py-2 px-7  text-center
+}
+
+
+.buttonPrimary{
+  @apply bg-blue-500  !important; 
+}
+ 
+ .buttonPrimary:hover{
+ @apply bg-blue-700  !important;
+}
