@@ -34,8 +34,3 @@ button{
  @apply bg-blue-700  !important;
 }
 
-
-.p-PaymentElement{
-  @apply font-sans !important ;
-  @apply text-gray-700 !important;
-}
