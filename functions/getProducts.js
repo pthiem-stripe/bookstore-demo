@@ -1,41 +1,12 @@
-const products = [
-  {
-    title: "The Art of Doing Science and Engineering",
-    author: "Richard Hamming",
-    image: "art-science-eng.jpeg",
-    id: "1",
-    description:
-      "The Art of Doing Science and Engineering is a reminder that a childlike capacity for learning and creativity are accessible to everyone.",
-    price: "23",
-    currency: "sgd",
-  },
-  {
-    title: "The Making of Prince of Persia: Journals 1985-1993",
-    author: "Jordan Mechner",
-    id: "2",
-    image: "prince-of-persia.jpeg",
-    description:
-      "In The Making of Prince of Persia, on the 30th anniversary of the game’s release, Mechner looks back at the journals he kept from 1985 to 1993.",
-    price: "25",
-    currency: "sgd",
-  },
-  {
-    title: "Working in Public: The Making and Maintenance of Open Source",
-    author: "Nadia Eghbal",
-    id: "3",
-    image: "working-in-public.jpeg",
-    description:
-      "Nadia Eghbal takes an inside look at modern open source and offers a model through which to understand the challenges faced by online creators.",
-    price: "28",
-    currency: "sgd",
-  },
-];
+const stripe = require("stripe")(process.env.STRIPE_SK);
 
 exports.handler = async function (event, context) {
   console.log("/getProducts", event.body);
 
+  const products = await stripe.products.list({});
+
   return {
     statusCode: 200,
-    body: JSON.stringify(products),
+    body: JSON.stringify(products.data),
   };
 };

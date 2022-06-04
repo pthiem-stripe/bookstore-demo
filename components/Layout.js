@@ -11,7 +11,7 @@ export default function Layout({ children }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="text-gray-700 ">
+      <div className="text-gray-700 font-sans ">
         <div>
           <header>
             <nav className="px-7 text-lg font-bold">

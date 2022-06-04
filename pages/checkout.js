@@ -9,6 +9,15 @@ import CheckoutForm from "../components/Checkout/checkoutForm";
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PK);
 
+const elementsAppearance = {
+    theme: "stripe",
+    variables: {
+        fontSizeBase: "0.875rem",
+        fontFamily: 'font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
+        colorText: "#374151"
+    }
+}
+
 export default function Home() {
   const router = useRouter();
 
@@ -16,6 +25,7 @@ export default function Home() {
   const [price, setPrice] = useState();
   const [img, setImg] = useState();
   const [currency, setCurrency] = useState();
+  const [sku, setSku] = useState();
   const [clientSecret, setClientSecret] = useState();
 
   const [pageLoading, setPageLoading] = useState(true);
@@ -30,11 +40,11 @@ export default function Home() {
     setPrice(query.price);
     setImg(query.img);
     setCurrency(query.currency);
+    setSku(query.sku);
   }, [router.isReady, router.query]);
 
   useEffect(() => {
-    if (!title || !price || !img || !currency) return;
-
+    if (!title || !price || !img || !currency || !sku) return;
 
     setPageLoading(true);
 
@@ -46,6 +56,7 @@ export default function Home() {
           body: JSON.stringify({
             amount: price * 10,
             currency: currency,
+            sku: sku,
           }),
         }
       );
@@ -57,10 +68,10 @@ export default function Home() {
     };
 
     fetchClientSecret();
-  }, [price, title, img]);
+  }, [price, title, img, currency, sku]);
 
   useEffect(() => {
-    if (!pageLoading && elementReady) setShowLoadingSpinner(false);
+    if (!pageLoading && elementReady) setShowLoadingSpinner(false)
     else setShowLoadingSpinner(true);
   }, [pageLoading, elementReady]);
 
@@ -85,7 +96,7 @@ export default function Home() {
                 <div>
                   <Elements
                     stripe={stripePromise}
-                    options={{ clientSecret: clientSecret }}
+                    options={{ clientSecret: clientSecret, appearance: elementsAppearance }}
                   >
                     <CheckoutForm
                       elementReady={(isReady) => updateElementReadyState(isReady)}

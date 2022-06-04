@@ -9,6 +9,7 @@ export default function Home() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
+    if(products.length > 0) return
     const fetchProducts = async () => {
       const fetchProductsResult = await fetch(
         "/.netlify/functions/getProducts",
@@ -16,12 +17,27 @@ export default function Home() {
       );
 
       const products = await fetchProductsResult.json();
-      setProducts(products);
+
+      let productPriceArray = [];
+
+      products.forEach(async (element) => {
+        console.log("fetch price for ");
+        const fetchPriceResult = await fetch("/.netlify/functions/getPrice", {
+          method: "POST",
+          body: JSON.stringify({
+            priceId: element.default_price,
+          }),
+        });
+        const price = await fetchPriceResult.json();
+        productPriceArray.push({ ...element, ...price });
+      });
+      console.log(productPriceArray);
+      setProducts(productPriceArray);
     };
     fetchProducts();
   }, []);
 
-  const navigate = (title, img, price, currency) => {
+  const navigate = (title, img, price, currency, sku) => {
     router.push(
       "/checkout?title=" +
         title +
@@ -30,7 +46,9 @@ export default function Home() {
         "&price=" +
         price +
         "&currency=" +
-        currency
+        currency +
+        "&sku=" +
+        sku
     );
   };
   return (
@@ -41,21 +59,19 @@ export default function Home() {
             <div className="border rounded shadow bg-white" key={i}>
               <div className="flex flex-col h-full rounded">
                 <div>
-                  <img src={v.image} className="rounded-t"></img>
+                  <img src={v.images[0]} className="rounded-t"></img>
                 </div>
                 <div className="m-5 flex flex-col space-y-3 ">
-                  <div className="text-lg font-bold">{v.title}</div>
-                  <div className="text-lg">{v.author}</div>
+                  <div className="text-lg font-bold">{v.name}</div>
+                  <div className="text-lg">{v.metadata.Author}</div>
                   <div className="py-4">{v.description}</div>
                 </div>
                 <div className="mt-auto px-5 mb-5">
                   <button
                     className="buttonPrimary w-full"
-                    onClick={() =>
-                      navigate(v.title, v.image, v.price, v.currency)
-                    }
+                 
                   >
-                    purchase - {v.currency} {v.price}
+                    purchase - {v.currency} {v.unit_amount}
                   </button>
                 </div>
               </div>

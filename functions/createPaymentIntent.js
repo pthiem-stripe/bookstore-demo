@@ -7,6 +7,9 @@ exports.handler = async function (event, context) {
   const paymentIntent = await stripe.paymentIntents.create({
     amount: reqBody.amount,
     currency: reqBody.currency,
+    metadata: {
+        sku: reqBody.sku,
+    },
     automatic_payment_methods: { enabled: true },
   });
 
