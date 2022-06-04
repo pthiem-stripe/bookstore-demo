@@ -19,17 +19,20 @@ export default function Layout({ children }) {
                 <div className="flex items-center justify-between h-16">
                   <div className="flex items-center">
                     <div className="flex-shrink-0">
-                      {/* <img
-                      className="h-8 w-8"
-                      src="m1.png"
+                      <img
+                      className="h-12"
+                      src="press.png"
                       alt="Workflow"
-                    /> */}
+                    />
                     </div>
                     <div className="block">
-                      <div className="ml-10 flex items-baseline space-x-4 uppercase">
+                    <Link href="/">
+                      <div className="ml-4 flex items-baseline space-x-4 uppercase cursor-pointer  hover:underline hover:text-gray-900 px-3 py-2 ">
+                      
                         Stripe Press
                       
                       </div>
+                      </Link>
                     </div>
                   </div>
                   <div className="block">
@@ -51,7 +54,7 @@ export default function Layout({ children }) {
             </nav>
           </header>
         </div>
-        <div className="my-6  max-w-7xl mx-auto text-gray-700">
+        <div className="my-6  max-w-7xl mx-auto text-gray-700 text-sm">
           <main className="flex flex-col items-center justify-center ">
             <div className="w-full items-center flex flex-col mb-20  ">
               {children}

@@ -22,7 +22,7 @@ a {
 
 
 button{
-  @apply uppercase cursor-pointer text-white font-bold py-2 px-7  text-center
+  @apply uppercase cursor-pointer text-white font-bold py-2 px-7 rounded  text-center
 }
 
 
