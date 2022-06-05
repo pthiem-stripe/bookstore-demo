@@ -100,6 +100,9 @@ export default function Home() {
                   >
                     <CheckoutForm
                       elementReady={(isReady) => updateElementReadyState(isReady)}
+                      title={title}
+                      imgSrc={img}
+                      
                     />
                   </Elements>
                 </div>

@@ -25,7 +25,7 @@ const CheckoutForm = (props) => {
     const response = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        return_url: process.env.NEXT_PUBLIC_SUCCESS_URL,
+        return_url: process.env.NEXT_PUBLIC_SUCCESS_URL + "/?title=" + props.title + "&imgSrc=" + props.imgSrc,
         receipt_email: email,
       },
     });

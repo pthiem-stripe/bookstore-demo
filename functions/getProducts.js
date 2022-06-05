@@ -1,5 +1,3 @@
-const stripe = require("stripe")(process.env.STRIPE_SK);
-
 const products = [
   {
     title: "The Art of Doing Science and Engineering",
