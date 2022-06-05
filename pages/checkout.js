@@ -10,13 +10,14 @@ import CheckoutForm from "../components/Checkout/checkoutForm";
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PK);
 
 const elementsAppearance = {
-    theme: "stripe",
-    variables: {
-        fontSizeBase: "0.875rem",
-        fontFamily: 'font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
-        colorText: "#374151"
-    }
-}
+  theme: "stripe",
+  variables: {
+    fontSizeBase: "0.875rem",
+    fontFamily:
+      'font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
+    colorText: "#374151",
+  },
+};
 
 export default function Home() {
   const router = useRouter();
@@ -28,7 +29,7 @@ export default function Home() {
   const [sku, setSku] = useState();
   const [clientSecret, setClientSecret] = useState();
 
-  const [pageLoading, setPageLoading] = useState(true);
+  const [pageLoading, setPageLoading] = useState(false);
   const [elementReady, setElementReady] = useState(false);
   const [showLoadingSpinnger, setShowLoadingSpinner] = useState(true);
 
@@ -41,12 +42,14 @@ export default function Home() {
     setImg(query.img);
     setCurrency(query.currency);
     setSku(query.sku);
+    if (query.payment_intent_client_secret)
+      setClientSecret(query.payment_intent_client_secret);
   }, [router.isReady, router.query]);
 
   useEffect(() => {
     if (!title || !price || !img || !currency || !sku) return;
 
-    setPageLoading(true);
+    if (clientSecret) return; //redirect from error page, reuse pi instead of loading new one.
 
     const fetchClientSecret = async () => {
       const createPaymentIntentResult = await fetch(
@@ -68,16 +71,16 @@ export default function Home() {
     };
 
     fetchClientSecret();
-  }, [price, title, img, currency, sku]);
+  }, [price, title, img, currency, sku, clientSecret]);
 
   useEffect(() => {
-    if (!pageLoading && elementReady) setShowLoadingSpinner(false)
+    if (!pageLoading && elementReady) setShowLoadingSpinner(false);
     else setShowLoadingSpinner(true);
   }, [pageLoading, elementReady]);
 
   const updateElementReadyState = (isReady) => {
-      setElementReady(isReady);
-  }
+    setElementReady(isReady);
+  };
 
   return (
     <>
@@ -96,13 +99,20 @@ export default function Home() {
                 <div>
                   <Elements
                     stripe={stripePromise}
-                    options={{ clientSecret: clientSecret, appearance: elementsAppearance }}
+                    options={{
+                      clientSecret: clientSecret,
+                      appearance: elementsAppearance,
+                    }}
                   >
                     <CheckoutForm
-                      elementReady={(isReady) => updateElementReadyState(isReady)}
+                      elementReady={(isReady) =>
+                        updateElementReadyState(isReady)
+                      }
                       title={title}
-                      imgSrc={img}
-                      
+                      img={img}
+                      price={price}
+                      sku={sku}
+                      currency={currency}
                     />
                   </Elements>
                 </div>
