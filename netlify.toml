@@ -1,5 +1,0 @@
-[functions]
-  directory = "functions"
-
-[build]
-environment = {NEXT_PUBLIC_VERSION = "local", STRIPE_SK = "sk_test_51L6v9kIxUOHQp8UD20uPJHcwvboy66EdxEcx24LmfpswokRZCrshGAGWpqUA78Klqp0OSRzIzi2WEk7nQ1MwKFuo00nhXOcvKb", NEXT_PUBLIC_STRIPE_PK = "pk_test_51L6v9kIxUOHQp8UDVi32Qm3awL1Djcsxlru34r6RAstBOPnCDI95OMAniYubbkonQJFJRfFkFXkX8i2oRGlpzPNn00vtf6OpmG", NEXT_PUBLIC_SUCCESS_URL = "http://localhost:8888/success"}

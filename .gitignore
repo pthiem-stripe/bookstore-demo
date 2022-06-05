@@ -105,4 +105,4 @@ dist
 
 
 #Netlify
-.netlify.toml
+netlify.toml
