@@ -56,7 +56,7 @@ The app makes 2 API calls in total during a purchase. The `/createPaymentIntent`
 #### Create Payment Intent
 
 <p align="center">
-<img src="./doc/apiflow_createPaymentIntent.png" width="670px">
+<img src="./doc/apiflow_createPaymentIntent.png" width="770px">
 </p>
 
 
