@@ -123,18 +123,37 @@ The *Make payment* step can be further broken down into
 
 
 ### Extensions & Improvements
+The current state of the app is very basic. To improve the user experience and grow the business, the followin improvements and extensions could be implemented.
 #### Cart Functionality
+A Cart feature would allow users to check out multiple items and/or higher quantities of items.
 #### Customer Accounts
-#### Storing and reusing Payment Methods
-#### Subscriptions
-#### Discount Codes
-#### Product API
-#### Order API
-#### Error handling
+Adding customer account functionality brings a whole subset of features:
+- Storing and reusing payment methods
+- Order History
+- Storing and reusing billing/invoicing addresses
+- On-site refund/exchange requests
+Besides better user experience, these features also collect valuable data about customer behavior. 
 
-### Challenges
+#### Use Stripe Customer Objects (with or without customer accounts)
+Using Stripe Customer Objects and providing more customer-related information (such as addresses) helps with fraud prevention and analytics, and enables other useful features such as storing and reusing payment methods.
+
+#### Subscriptions
+Subscriptions (e.g. for monthly new releases) could be a way to expand the current business. Stripe APIs can be used to setup subscriptions. The customer portal can be made available to customers to manage their subscriptions.
+
+#### Discount Codes
+Discount Codes could be leveraged during promotion perios or for loyal customers.
+
+#### Error handling
+The current state of the app does not include proper error handling, e.g. for failing API calls.
+
+#### Move to a scalable, managed backend
+The Netlify backend is a nice way to quickly ramp up an app. It is limited in its abilities to be configured and managed, e.g. logs are discarded after a few days.
 
 ### References used
-- stripe payment intent api
-- accepting a payment with element
-- styling element
+[PaymentIntent Api](https://stripe.com/docs/api/payment_intents)
+
+
+[Accepting a payment](https://stripe.com/docs/payments/accept-a-payment?ui=elements)
+
+
+[Elements Apperance API](https://stripe.com/docs/elements/appearance-api)
