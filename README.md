@@ -56,7 +56,7 @@ The demo is developed as a React-based **Next.js** app using **Tailwind CSS** an
 
 
 
-The [Stripe Payment Element](https://stripe.com/docs/payments/payment-element) is used to collect payment information in a PCI-compliant way. The integration follows the steps described in [this article](https://stripe.com/docs/payments/accept-a-payment?ui=elements). The Payment Element is rendered in an iframe and securely transmits sensitive information (such as credit card details) to Stripe. The component needs a `payment_intent_client_secret` when initialized. This client secret is used to map the collected payment information to a `PaymentIntent`.  Once the user triggers to make a payment, the Payment Element transmits the payment information to Stripe to process and confirm the payment. 
+The [Stripe Payment Element](https://stripe.com/docs/payments/payment-element) is used to collect payment information in a PCI-compliant way. The integration follows the steps described in [this article](https://stripe.com/docs/payments/accept-a-payment?ui=elements). The Payment Element is rendered in an iframe and securely transmits sensitive information (such as credit card details) to Stripe. The component needs a `payment_intent_client_secret` when initialized. This client secret is used to map the collected payment information to a `PaymentIntent`.  Once the user triggers to make a payment, the Payment Element transmits the payment information to Stripe to process and confirm the payment and handles redirects if additional user actions are required. 
 
 <p align="center">
 <img src="./doc/paymentElement_flow.png" >
