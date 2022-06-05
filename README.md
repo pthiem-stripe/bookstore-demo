@@ -1,34 +1,55 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# pthiem's Written IE Project 
+The web application developed for this demo is a simple web shop that allows customers to buy one Stripe Press book at a time. Customers are able to pick their book of choice, select a payment method, provide the respective payment method details and submit their order. After the payment has been handled, a confirm will be shown incl. order and payment details.  
 
-## Getting Started
 
-First, run the development server:
+## Repo
+The public Github Repo can be found at https://github.com/pthiem-stripe/bookstore-demo
 
-```bash
-npm run dev
-# or
-yarn dev
+## Live Demo
+Try out the live demo at https://pthiem-bookstoredemo.netlify.app/
+
+## Getting Started Locally
+
+Install Netlify CLI at version 9.6.5
+```
+npm install -g netlify-cli@9.6.5  
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+Install dependencies
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+```
+npm install 
+```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Start netlify
+```
+netlify dev
+```
 
-## Learn More
+## Solution Details
 
-To learn more about Next.js, take a look at the following resources:
+### Overview
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Tech Stack
+The demo is developed as a react-based **Next.js** app using **Tailwind CSS** and hosted on **Netlify**. 
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+**Next.js** is a lightweight, react-based, hybrid SSG/SSR framework with (among other things) built-in routing, image optimization, internationalization, and a zero-config approach. This allows to spin up a working app with out-of-the-box routing without requiring any boilerplate code.   
 
-## Deploy on Vercel
+**Tailwind CSS** is a utility-first, configurable CSS framework. It provides CSS helper classess to describe how items should be styled, rather than providing pre-defined components like frameworks such as Bootstrap.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**Netlify** is a cloud computing Company from San Francisco providing web-hosting and automation services primarily for JAMstack websites. Netlify has native support for **Next.js** and built-in integration with Github. Their service offering allows to have a Github-hosted Next.js app up and running without any configuration changes in less than 5 minutes. Another feature worth-mentioning is Netlify Functions, which allows to setup serverless functions that can be deployed together with the frontend, therefore significantly reducing the effort/overhead in cases where small-scale backend functionality is required. 
+### User flow
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### API Calls
+
+### Extensions & Improvements
+#### Cart Functionality
+#### Customer Accounts
+#### Storing and reusing Payment Methods
+#### Subscriptions
+#### Discount Codes
+#### Product API
+#### Order API
+
+### Challenges
