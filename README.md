@@ -63,9 +63,9 @@ The [Stripe Payment Element](https://stripe.com/docs/payments/payment-element) i
 </p>
 
 
-The Element also carries out certain client side validations, such as checking the credit card number, expiration dates, etc. The appearance API was used to make slight changes to the Element UI to be more in line with the overall UI of the demo app.
+The component also carries out real-time validations, such as checking the credit card number format, expiration dates, etc. The appearance API was used to make slight changes to the Element UI to be more in line with the overall UI of the demo app.
 
-
+The Payment Element is hidden until it is fully initialized, loaded and can be rendered (signalled through the `onReady` event) to avoid flickering content. A loading spinner is shown on the page in the meantime.
 ### API Calls
 The app makes 2 API calls in total during a purchase. The `/createPaymentIntent` call is necessary to create a [`PaymentIntent`](https://stripe.com/docs/api/payment_intents) and to get the `payment_intent_client_secret` that is required to initialize the Payment Element. The call to `/getPaymentIntentDetails` is done to retrieve additional information to be shown to the user to provide a better experience.
 #### /createPaymentIntent
@@ -88,6 +88,7 @@ As described, this call generates a `PaymentIntent` and passes the `payment_inte
 ```
 
 Amount, currency, and metadata are passed in as parameters by the frontend. By setting `automatic_payment_methods` to `enabled=true`, we allow the Payment Element to render and accept all suitable payment methods (e.g. depending on browser) as configured in the Stripe Dashboard. With this option, it is possile to enable new payment methods without making any code changes (as long as they are supported by the Payment Element).
+
 
 
 
