@@ -129,8 +129,8 @@ As the app only allows one to buy one book at a time, the user flow is very stra
 <img src="./doc/userflow_overview.png" height="650px">
 </p>
 
-The *Make payment* step can be further broken down into 
-1. Selecting a payment method
+The *Make payment* step can be further broken down into these user actions:
+1. Select a payment method
 2. If necessary, provide additional payment method details (such as credit card details)
 3. Confirm the payment
 4. If necessary, carry out additional user actions (such as scanning the PayNow QR code, 3DS challenge, etc.)
