@@ -47,6 +47,37 @@ The demo is developed as a react-based **Next.js** app using **Tailwind CSS** an
 **Tailwind CSS** is a utility-first, configurable CSS framework. It provides CSS helper classess to describe how items should be styled, rather than providing pre-defined components like frameworks such as Bootstrap.
 
 **Netlify** is a cloud computing company from San Francisco providing web-hosting and automation services primarily for JAMstack websites. Netlify has native support for Next.js and built-in integration with Github. Their service offering allows to have a Github-hosted Next.js app up and running without any configuration changes in less than 5 minutes. Another feature worth-mentioning is Netlify Functions, which allows to setup serverless functions that can be deployed together with the frontend, therefore significantly reducing the effort/overhead in cases where small-scale backend functionality is required. 
+
+### Payment Element
+
+
+### API Calls
+The app makes 2 API calls in total during a purchase. The `/createPaymentIntent` call is necessary to create a `PaymentIntent` and to get the `payment_intent_client_secret` that is required to initialize the Payment Element. The call to `/getPaymentIntentDetails` is done to retrieve additional information to be shown to the user to provide a better experience.
+#### Create Payment Intent
+
+<p align="center">
+<img src="./doc/apiflow_createPaymentIntent.png" width="670px">
+</p>
+
+
+As described, this call generates a `PaymentIntent` and passes the `payment_intent_client_secret` back to the frontend. This call has to be made from the backend as it requires the Secret Key to be passed along to Stripe. The Backend uses the Stripe Node SDK to create a `PaymentIntent` using the following call:
+```
+  const paymentIntent = await stripe.paymentIntents.create({
+    amount: reqBody.amount,
+    currency: reqBody.currency,
+    metadata: {
+        sku: reqBody.sku,
+    },
+    automatic_payment_methods: { enabled: true },
+  });
+```
+
+Amount, currency, and metadata are passed in as parameters by the frontend. By setting `automatic_payment_methods` to `enabled=true`, we allow the Payment Element to render and accept all suitable payment methods (e.g. depending on browser) as configured in the Stripe Dashboard. With this option, it is possile to enable new payment methods without making any code changes (as long as they are supported by the Payment Element).
+
+
+
+#### Get Payment Intent Details
+
 ### User flow
 As the app only allows to buy one book at a time, the user flow is very straightforward. A user will select a book and then continues to make payment. A success page with payment and order details is shown if the payment is successful. In case the payment fails, the user will be redirected to an error page where they can opt to go back to the Checkout page  (with their product still selected) to re-enter payment method details or select another payment method. The previously generated payment intent will be reused, if the users opts to try again.
 
@@ -61,11 +92,10 @@ The *Make payment* step can be further broken down into
 4. If necessary, carrying out additional user actions (such as scanning the PayNow QR code, 3DS challenge, etc.)
 
 <p align="center">
-<img src="./doc/userflow_makepayment.png" height="850px">
+<img src="./doc/userflow_makepayment.png" height="870px">
 </p>
 
 
-### API Calls
 
 
 
