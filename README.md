@@ -3,7 +3,7 @@ The web application developed for this demo is a simple web shop that allows cus
 
 
 ## Repo
-The public Github Repo can be found at https://github.com/pthiem-stripe/bookstore-demo
+The public GitHub Repo can be found at https://github.com/pthiem-stripe/bookstore-demo
 
 ## Live Demo
 Try out the live demo at https://pthiem-bookstoredemo.netlify.app/
@@ -44,9 +44,9 @@ The demo is developed as a react-based **Next.js** app using **Tailwind CSS** an
 
 **Next.js** is a lightweight, react-based, hybrid SSG/SSR framework with (among other things) built-in routing, image optimization, internationalization, and a zero-config approach. This allows to spin up a working app with out-of-the-box routing without requiring any boilerplate code.   
 
-**Tailwind CSS** is a utility-first, configurable CSS framework. It provides CSS helper classess to describe how items should be styled, rather than providing pre-defined components like frameworks such as Bootstrap.
+**Tailwind CSS** is a utility-first, configurable CSS framework. It provides CSS helper classes to describe how items should be styled, rather than providing pre-defined components like frameworks such as Bootstrap.
 
-**Netlify** provides web-hosting and automation services primarily for JAMstack websites with native support for Next.js and built-in integration with Github. Their service offering allows to have a Github-hosted Next.js app up and running without any configuration changes in less than 5 minutes. Another feature worth-mentioning is Netlify Functions, which allows to setup serverless functions that can be deployed together with the frontend, therefore significantly reducing the effort/overhead in cases where small-scale backend functionality is required. 
+**Netlify** provides web-hosting and automation services primarily for JAMstack websites with native support for Next.js and built-in integration with GitHub. Their service offering allows to have a GitHub-hosted Next.js app up and running without any configuration changes in less than 5 minutes. Another feature worth mentioning is Netlify Functions, which allows to setup serverless functions that can be deployed together with the frontend, therefore significantly reducing the effort/overhead in cases where small-scale backend functionality is required. 
 
 ### Payment Element
 
@@ -56,7 +56,7 @@ The demo is developed as a react-based **Next.js** app using **Tailwind CSS** an
 
 
 
-The [Stripe Payment Element](https://stripe.com/docs/payments/payment-element) is used to collect payment information in a PCI compliant way. The integration follows the steps described in [this article](https://stripe.com/docs/payments/accept-a-payment?ui=elements). The Payment Element is rendered in an iframe and securely transmits sensitive information (such as credit card details) to Stripe. The component needs a `payment_intent_client_secret` when initialized. This client secret is used to map the collected payment information to a `PaymentIntent`.  Once the user triggers to submit the data, the Payment Element transmits the payment information to Stripe to process and confirm the payment. 
+The [Stripe Payment Element](https://stripe.com/docs/payments/payment-element) is used to collect payment information in a PCI compliant way. The integration follows the steps described in [this article](https://stripe.com/docs/payments/accept-a-payment?ui=elements). The Payment Element is rendered in an iframe and securely transmits sensitive information (such as credit card details) to Stripe. The component needs a `payment_intent_client_secret` when initialized. This client secret is used to map the collected payment information to a `PaymentIntent`.  Once the user triggers to make payment, the Payment Element transmits the payment information to Stripe to process and confirm the payment. 
 
 <p align="center">
 <img src="./doc/paymentElement_flow.png" >
@@ -87,7 +87,7 @@ As described, this call generates a `PaymentIntent` and passes the `payment_inte
   });
 ```
 
-Amount, currency, and metadata are passed in as parameters by the frontend. By setting `automatic_payment_methods` to `enabled=true`, we allow the Payment Element to render and accept all suitable payment methods (e.g. depending on browser) as configured in the Stripe Dashboard. With this option, it is possile to enable new payment methods without making any code changes (as long as they are supported by the Payment Element).
+Amount, currency, and metadata are passed in as parameters by the frontend. By setting `automatic_payment_methods` to `enabled=true`, we allow the Payment Element to render and accept all suitable payment methods (e.g. depending on browser) as configured in the Stripe Dashboard. With this option, it is possible to enable new payment methods without making any code changes (as long as they are supported by the Payment Element).
 
 
 
@@ -124,7 +124,7 @@ The *Make payment* step can be further broken down into
 
 
 ### Extensions & Improvements
-The current state of the app is very basic. To improve the user experience and grow the business, the followin improvements and extensions could be implemented.
+The current state of the app is very basic. To improve the user experience and grow the business, the following improvements and extensions could be implemented.
 #### Cart Functionality
 A Cart feature would allow users to check out multiple items and/or higher quantities of items.
 #### Customer Accounts
@@ -135,8 +135,8 @@ Adding customer account functionality enables a whole subset of new features:
 - On-site refund/exchange requests
 Besides better user experience, these features also collect valuable data about customer behavior. 
 
-#### Use Stripe Customer Objects (with or without customer accounts)
-Using Stripe C ustomer Objects and providing more customer-related information (such as addresses) helps with fraud prevention and analytics, and enables other useful features such as storing and reusing payment methods.
+#### Use Stripe Customer Objects
+Using Stripe Customer Objects and providing more customer-related information (such as addresses) helps with fraud prevention and analytics, and enables other useful features such as storing and reusing payment methods.
 
 #### Subscriptions
 Subscriptions (e.g. for monthly new releases) could be a way to expand the current business. Stripe APIs can be used to setup subscriptions. The customer portal can be made available to customers to manage their subscriptions.
