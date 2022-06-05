@@ -40,9 +40,9 @@ The demo is developed as a react-based **Next.js** app using **Tailwind CSS** an
 ### User flow
 As the app only allows to buy one book at a time, the user flow is very straightforward. A user will select a book and then continues to make payment. A success page with payment and order details is shown 
 
-
-Inline-style: 
-![alt text](./doc/userflow_overview.png "Logo Title Text 1")
+<p align="center">
+<img src="./doc/userflow_overview.png" height="450px">
+</p>
 
 ### API Calls
 
