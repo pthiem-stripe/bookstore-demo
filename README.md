@@ -1,5 +1,5 @@
 # pthiem's Written IE Project 
-The web application developed for this demo is a simple web shop that allows customers to buy one Stripe Press book at a time. Customers are able to pick their book of choice, select a payment method, provide the respective payment method details and submit their order. To make a payment, one can select to use Credit Cards (incl. Google and Apple Pay), as well as GrabPay and Paynow. After the payment has been handled, a confirmation will be shown incl. order and payment details.  
+The web application developed for this demo is a simple web shop that allows customers to buy one Stripe Press book at a time. Customers are able to pick their book of choice, select a payment method, provide the respective payment method details and submit their order. To make a payment, one can select to use Credit Cards (incl. Google and Apple Pay), as well as GrabPay and PayNow. After the payment has been handled, a confirmation will be shown incl. order and payment details.  
 
 
 ## Repo
@@ -46,7 +46,7 @@ The demo is developed as a react-based **Next.js** app using **Tailwind CSS** an
 
 **Tailwind CSS** is a utility-first, configurable CSS framework. It provides CSS helper classess to describe how items should be styled, rather than providing pre-defined components like frameworks such as Bootstrap.
 
-**Netlify** is a cloud computing company from San Francisco providing web-hosting and automation services primarily for JAMstack websites. Netlify has native support for Next.js and built-in integration with Github. Their service offering allows to have a Github-hosted Next.js app up and running without any configuration changes in less than 5 minutes. Another feature worth-mentioning is Netlify Functions, which allows to setup serverless functions that can be deployed together with the frontend, therefore significantly reducing the effort/overhead in cases where small-scale backend functionality is required. 
+**Netlify** provides web-hosting and automation services primarily for JAMstack websites with native support for Next.js and built-in integration with Github. Their service offering allows to have a Github-hosted Next.js app up and running without any configuration changes in less than 5 minutes. Another feature worth-mentioning is Netlify Functions, which allows to setup serverless functions that can be deployed together with the frontend, therefore significantly reducing the effort/overhead in cases where small-scale backend functionality is required. 
 
 ### Payment Element
 
@@ -67,7 +67,7 @@ The component also carries out real-time validations, such as checking the credi
 
 The Payment Element is hidden until it is fully initialized, loaded and can be rendered (signalled through the `onReady` event) to avoid flickering content. A loading spinner is shown on the page in the meantime.
 ### API Calls
-The app makes 2 API calls in total during a purchase. The `/createPaymentIntent` call is necessary to create a [`PaymentIntent`](https://stripe.com/docs/api/payment_intents) and to get the `payment_intent_client_secret` that is required to initialize the Payment Element. The call to `/getPaymentIntentDetails` is done to retrieve additional information to be shown to the user to provide a better experience.
+The app makes 2 API calls in total during a purchase. The `/createPaymentIntent` call is necessary to create a [`PaymentIntent`](https://stripe.com/docs/api/payment_intents) and to get the `payment_intent_client_secret` that is required to initialize the Payment Element. The call to `/getPaymentIntentDetails` is done to retrieve additional information to be shown to the user to provide a better experience. These calls require the Secret Key to be passed along. Therefore, these calls are made by the Backend (Netlify Functions).
 #### /createPaymentIntent
 
 <p align="center">
@@ -75,7 +75,7 @@ The app makes 2 API calls in total during a purchase. The `/createPaymentIntent`
 </p>
 
 
-As described, this call generates a `PaymentIntent` and passes the `payment_intent_client_secret` back to the frontend. This call has to be made from the backend as it requires the Secret Key to be passed along to Stripe. The Backend uses the Stripe Node SDK to create a `PaymentIntent` using the following call:
+As described, this call generates a `PaymentIntent` and passes the `payment_intent_client_secret` back to the frontend. The Backend uses the Stripe Node SDK to create a `PaymentIntent` using the following call:
 ```
   const paymentIntent = await stripe.paymentIntents.create({
     amount: reqBody.amount,
@@ -128,7 +128,7 @@ The current state of the app is very basic. To improve the user experience and g
 #### Cart Functionality
 A Cart feature would allow users to check out multiple items and/or higher quantities of items.
 #### Customer Accounts
-Adding customer account functionality brings a whole subset of features:
+Adding customer account functionality enables a whole subset of new features:
 - Storing and reusing payment methods
 - Order History
 - Storing and reusing billing/invoicing addresses
@@ -136,7 +136,7 @@ Adding customer account functionality brings a whole subset of features:
 Besides better user experience, these features also collect valuable data about customer behavior. 
 
 #### Use Stripe Customer Objects (with or without customer accounts)
-Using Stripe Customer Objects and providing more customer-related information (such as addresses) helps with fraud prevention and analytics, and enables other useful features such as storing and reusing payment methods.
+Using Stripe C ustomer Objects and providing more customer-related information (such as addresses) helps with fraud prevention and analytics, and enables other useful features such as storing and reusing payment methods.
 
 #### Subscriptions
 Subscriptions (e.g. for monthly new releases) could be a way to expand the current business. Stripe APIs can be used to setup subscriptions. The customer portal can be made available to customers to manage their subscriptions.
