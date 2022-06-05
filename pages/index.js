@@ -1,25 +1,8 @@
-import { useEffect, useState } from "react";
-import Head from "next/head";
-import Image from "next/image";
 import { useRouter } from "next/router";
+import products from "./../components/products.json"
 
 export default function Home() {
   const router = useRouter();
-
-  const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-    const fetchProducts = async () => {
-      const fetchProductsResult = await fetch(
-        "/.netlify/functions/getProducts",
-        { method: "POST" }
-      );
-
-      const products = await fetchProductsResult.json();
-      setProducts(products);
-    };
-    fetchProducts();
-  }, []);
 
 
   const navigate = (title, img, price, currency, sku) => {

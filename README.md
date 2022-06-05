@@ -28,7 +28,7 @@ Create a netlify.toml file in the root directory with the following contents and
   directory = "functions"
 
 [build]
-environment = {NEXT_PUBLIC_VERSION = "local", STRIPE_SK = "sk_test_xxx", NEXT_PUBLIC_STRIPE_PK = "pk_test_xxx", NEXT_PUBLIC_SUCCESS_URL = "http://localhost:8888/success"}
+environment = {STRIPE_SK = "sk_test_xxx", NEXT_PUBLIC_STRIPE_PK = "pk_test_xxx", NEXT_PUBLIC_SUCCESS_URL = "http://localhost:8888/success"}
 ```
 
 
