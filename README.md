@@ -29,8 +29,6 @@ netlify dev
 
 ## Solution Details
 
-### Overview
-
 ### Tech Stack
 The demo is developed as a react-based **Next.js** app using **Tailwind CSS** and hosted on **Netlify**. 
 
@@ -38,10 +36,17 @@ The demo is developed as a react-based **Next.js** app using **Tailwind CSS** an
 
 **Tailwind CSS** is a utility-first, configurable CSS framework. It provides CSS helper classess to describe how items should be styled, rather than providing pre-defined components like frameworks such as Bootstrap.
 
-**Netlify** is a cloud computing Company from San Francisco providing web-hosting and automation services primarily for JAMstack websites. Netlify has native support for **Next.js** and built-in integration with Github. Their service offering allows to have a Github-hosted Next.js app up and running without any configuration changes in less than 5 minutes. Another feature worth-mentioning is Netlify Functions, which allows to setup serverless functions that can be deployed together with the frontend, therefore significantly reducing the effort/overhead in cases where small-scale backend functionality is required. 
+**Netlify** is a cloud computing company from San Francisco providing web-hosting and automation services primarily for JAMstack websites. Netlify has native support for Next.js and built-in integration with Github. Their service offering allows to have a Github-hosted Next.js app up and running without any configuration changes in less than 5 minutes. Another feature worth-mentioning is Netlify Functions, which allows to setup serverless functions that can be deployed together with the frontend, therefore significantly reducing the effort/overhead in cases where small-scale backend functionality is required. 
 ### User flow
+As the app only allows to buy one book at a time, the user flow is very straightforward. A user will select a book and then continues to make payment. A success page with payment and order details is shown 
+
+
+Inline-style: 
+![alt text](./doc/userflow_overview.png "Logo Title Text 1")
 
 ### API Calls
+
+
 
 ### Extensions & Improvements
 #### Cart Functionality
