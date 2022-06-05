@@ -26,7 +26,15 @@ export default function Home() {
   }, [router.isReady, router.query]);
 
   useEffect(() => {
-    if (!paymentIntentId || !title || !price || !img || !currency || !sku || !paymentIntentClientSecret)
+    if (
+      !paymentIntentId ||
+      !title ||
+      !price ||
+      !img ||
+      !currency ||
+      !sku ||
+      !paymentIntentClientSecret
+    )
       return;
     setPageLoading(true);
 
@@ -51,10 +59,18 @@ export default function Home() {
     };
 
     fetchPaymentIntent();
-  }, [paymentIntentId, title, price, sku, currency, img, paymentIntentClientSecret]);
+  }, [
+    paymentIntentId,
+    title,
+    price,
+    sku,
+    currency,
+    img,
+    paymentIntentClientSecret,
+  ]);
 
   const paymentMethodDetails = () => {
-    if (paymentIntent.charges.data[0].payment_method_details.type === "card") {
+    if (paymentIntent?.charges.data[0]?.payment_method_details.type === "card") {
       const cardDetails =
         paymentIntent.charges.data[0].payment_method_details.card;
       return (
@@ -93,7 +109,7 @@ export default function Home() {
       ) : (
         <div className=" max-w-6xl m-6 text-center w-full">
           <div className="flex flex-col w-full space-y-6">
-            {paymentIntent.status === "succeeded" && (
+            {paymentIntent?.status === "succeeded" && (
               <>
                 <div className="mx-auto text-xl font-bold mb-12">
                   Payment successful
@@ -109,33 +125,25 @@ export default function Home() {
             <div className="flex flex-col space-y-2 pt-12">
               <div className="">Payment Intent: {paymentIntentId}</div>
 
-              {paymentIntent && (
-                <>
-                  <div className="">Payment Status: {paymentIntent.status}</div>
-                </>
-              )}
+              <div className="">Payment Status: {paymentIntent?.status}</div>
 
-              {paymentIntent.status === "succeeded" && (
-                <>
-                  <div className="">
-                    Payment Method:{" "}
-                    {paymentIntent.charges.data[0].payment_method_details.type}
-                  </div>
-                  {paymentMethodDetails()}
-                  <div>
-                    <a
-                      href={paymentIntent.charges.data[0].receipt_url}
-                      target="_blank"
-                    >
-                      Click here for your receipt
-                    </a>
-                  </div>
-                  <div>
-                    Copy of receipt was sent to:{" "}
-                    {paymentIntent.charges.data[0].receipt_email}
-                  </div>
-                </>
-              )}
+              <div className="">
+                Payment Method:{" "}
+                {paymentIntent?.charges.data[0]?.payment_method_details.type}
+              </div>
+              {paymentMethodDetails()}
+              <div>
+                <a
+                  href={paymentIntent?.charges.data[0]?.receipt_url}
+                  target="_blank"
+                >
+                  Click here for your receipt
+                </a>
+              </div>
+              <div>
+                Copy of receipt was sent to:{" "}
+                {paymentIntent?.charges.data[0]?.receipt_email}
+              </div>
             </div>
           </div>
         </div>
