@@ -40,13 +40,13 @@ netlify dev
 ## Solution Details
 
 ### Tech Stack
-The demo is developed as a react-based **Next.js** app using **Tailwind CSS** and is hosted on **Netlify**. 
+The demo is developed as a React-based **Next.js** app using **Tailwind CSS** and is hosted on **Netlify**. 
 
-**Next.js** is a lightweight, react-based, hybrid SSG/SSR framework with (among other things) built-in routing, image optimization, internationalization, and a zero-config approach. This allows to spin up a working app with out-of-the-box routing without requiring any boilerplate code.   
+**Next.js** is a lightweight, React-based, hybrid SSG/SSR framework with (among other things) built-in routing, image optimization, internationalization, and a zero-config approach. This allows to spin up a working app with out-of-the-box routing without requiring any boilerplate code.   
 
 **Tailwind CSS** is a utility-first, configurable CSS framework. It provides CSS helper classes to describe how items should be styled, rather than providing pre-defined components like frameworks such as Bootstrap.
 
-**Netlify** provides web-hosting and automation services primarily for JAMstack websites with native support for Next.js and built-in integration with GitHub. Their service offering allows to have a GitHub-hosted Next.js app up and running without any configuration changes in less than 5 minutes. Another feature worth mentioning is Netlify Functions, which allows to setup serverless functions that can be deployed together with the frontend, therefore significantly reducing the effort/overhead in cases where small-scale backend functionality is required. 
+**Netlify** provides web-hosting and automation services primarily for JAMstack websites with native support for Next.js and built-in integration with GitHub. Their service offering allows to have a GitHub-hosted Next.js app up and running without any configuration changes in less than 5 minutes. Another feature worth mentioning is Netlify Functions, which allows to set up serverless functions that can be deployed together with the frontend, therefore significantly reducing the effort/overhead in cases where small-scale backend functionality is required. 
 
 ### Payment Element
 
@@ -56,7 +56,7 @@ The demo is developed as a react-based **Next.js** app using **Tailwind CSS** an
 
 
 
-The [Stripe Payment Element](https://stripe.com/docs/payments/payment-element) is used to collect payment information in a PCI compliant way. The integration follows the steps described in [this article](https://stripe.com/docs/payments/accept-a-payment?ui=elements). The Payment Element is rendered in an iframe and securely transmits sensitive information (such as credit card details) to Stripe. The component needs a `payment_intent_client_secret` when initialized. This client secret is used to map the collected payment information to a `PaymentIntent`.  Once the user triggers to make payment, the Payment Element transmits the payment information to Stripe to process and confirm the payment. 
+The [Stripe Payment Element](https://stripe.com/docs/payments/payment-element) is used to collect payment information in a PCI-compliant way. The integration follows the steps described in [this article](https://stripe.com/docs/payments/accept-a-payment?ui=elements). The Payment Element is rendered in an iframe and securely transmits sensitive information (such as credit card details) to Stripe. The component needs a `payment_intent_client_secret` when initialized. This client secret is used to map the collected payment information to a `PaymentIntent`.  Once the user triggers to make a payment, the Payment Element transmits the payment information to Stripe to process and confirm the payment. 
 
 <p align="center">
 <img src="./doc/paymentElement_flow.png" >
@@ -65,7 +65,7 @@ The [Stripe Payment Element](https://stripe.com/docs/payments/payment-element) i
 
 The component also carries out real-time validations, such as checking the credit card number format, expiration dates, etc. The appearance API was used to make slight changes to the Element UI to be more in line with the overall UI of the demo app.
 
-The Payment Element is hidden until it is fully initialized, loaded and can be rendered (signalled through the `onReady` event) to avoid flickering content. A loading spinner is shown on the page in the meantime.
+The Payment Element is hidden until it is fully initialized, loaded, and can be rendered (signaled through the `onReady` event) to avoid flickering content. A loading spinner is shown on the page in the meantime.
 ### API Calls
 The app makes 2 API calls in total during a purchase. The `/createPaymentIntent` call is necessary to create a [`PaymentIntent`](https://stripe.com/docs/api/payment_intents) and to get the `payment_intent_client_secret` that is required to initialize the Payment Element. The call to `/getPaymentIntentDetails` is done to retrieve additional information to be shown to the user to provide a better experience. These calls require the Secret Key to be passed along. Therefore, these calls are made by the Backend (Netlify Functions).
 #### /createPaymentIntent
@@ -103,7 +103,7 @@ The call to `/getPaymentIntentDetails` is made after the Payment Element redirec
 
 
 ### User flow
-As the app only allows to buy one book at a time, the user flow is very straightforward. A user will select a book and then continues to make payment. A success page with payment and order details is shown if the payment is successful. In case the payment fails, the user will be redirected to an error page where they can opt to go back to the Checkout page (with their product still selected) to re-enter payment method details or select another payment method. The previously generated payment intent will be reused, if the users opts to try again.
+As the app only allows one to buy one book at a time, the user flow is very straightforward. A user will select a book and then continues to make payment. A success page with payment and order details is shown if the payment is successful. In case the payment fails, the user will be redirected to an error page where they can opt to go back to the Checkout page (with their product still selected) to re-enter payment method details or select another payment method. The previously generated payment intent will be reused if the user opts to try again.
 
 <p align="center">
 <img src="./doc/userflow_overview.png" height="650px">
@@ -111,15 +111,13 @@ As the app only allows to buy one book at a time, the user flow is very straight
 
 The *Make payment* step can be further broken down into 
 1. Selecting a payment method
-2. If necessary, providing additional payment method details (such as credit card details)
-3. Confirming the payment
-4. If necessary, carrying out additional user actions (such as scanning the PayNow QR code, 3DS challenge, etc.)
+2. If necessary, provide additional payment method details (such as credit card details)
+3. Confirm the payment
+4. If necessary, carry out additional user actions (such as scanning the PayNow QR code, 3DS challenge, etc.)
 
 <p align="center">
 <img src="./doc/userflow_makepayment.png" height="870px">
 </p>
-
-
 
 
 
@@ -139,16 +137,16 @@ Besides better user experience, these features also collect valuable data about 
 Using Stripe Customer Objects and providing more customer-related information (such as addresses) helps with fraud prevention and analytics, and enables other useful features such as storing and reusing payment methods.
 
 #### Subscriptions
-Subscriptions (e.g. for monthly new releases) could be a way to expand the current business. Stripe APIs can be used to setup subscriptions. The customer portal can be made available to customers to manage their subscriptions.
+Subscriptions (e.g. for monthly new releases) could be a way to expand the current business. Stripe APIs can be used to set up subscriptions. The customer portal can be made available to customers to manage their subscriptions.
 
 #### Discount Codes
-Discount Codes could be leveraged during promotion perios or for loyal customers.
+Discount Codes could be leveraged during promotion periods or for loyal customers.
 
 #### Error handling
 The current state of the app does not include proper error handling, e.g. for failing API calls.
 
 #### Move to a scalable, managed backend
-The Netlify backend is a nice way to quickly ramp up an app. It is limited in its abilities to be configured and managed, e.g. logs are discarded after a few days.
+The Netlify backend is a nice way to quickly ramp up an app. It is limited in its ability to be configured and managed, e.g. logs are discarded after a few days.
 
 ### References used
 [PaymentIntent Api](https://stripe.com/docs/api/payment_intents)
