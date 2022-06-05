@@ -19,35 +19,24 @@ export default function Layout({ children }) {
                 <div className="flex items-center justify-between h-16">
                   <div className="flex items-center">
                     <div className="flex-shrink-0">
-                      <img
-                      className="h-12"
-                      src="press.png"
-                      alt="Workflow"
-                    />
+                      <img className="h-12" src="press.png" alt="Workflow" />
                     </div>
                     <div className="block">
-                    <Link href="/">
-                      <div className="ml-4 flex items-baseline space-x-4 uppercase cursor-pointer  hover:underline hover:text-gray-900 px-3 py-2 ">
-                      
-                        Stripe Press
-                      
-                      </div>
+                      <Link href="/">
+                        <div className="ml-4 flex items-baseline space-x-4 uppercase cursor-pointer  hover:underline hover:text-gray-900 px-3 py-2 ">
+                          Stripe Press
+                        </div>
                       </Link>
                     </div>
                   </div>
                   <div className="block">
-                  <div className="ml-10 flex items-baseline space-x-4 uppercase">
-                     <Link href="/">
+                    <div className="ml-10 flex items-baseline space-x-4 uppercase">
+                      <Link href="/">
                         <div className="cursor-pointer  hover:underline hover:text-gray-900 px-3 py-2 ">
                           Books
                         </div>
                       </Link>
-                      <Link href="/#">
-                        <div className="cursor-pointer  hover:underline hover:text-gray-900 px-3 py-2  ">
-                          Link
-                        </div>
-                      </Link>
-                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
