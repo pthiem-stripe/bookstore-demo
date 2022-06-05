@@ -127,6 +127,8 @@ export default function Home() {
 
               <div className="">Payment Status: {paymentIntent?.status}</div>
 
+              <div className="">Amount: <span className="uppercase">{paymentIntent?.currency}</span> {(paymentIntent?.amount_received / 10 )}</div>
+
               <div className="">
                 Payment Method:{" "}
                 {paymentIntent?.charges.data[0]?.payment_method_details.type}
