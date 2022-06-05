@@ -1,5 +1,5 @@
 # pthiem's Written IE Project 
-The web application developed for this demo is a simple web shop that allows customers to buy one Stripe Press book at a time. Customers are able to pick their book of choice, select a payment method, provide the respective payment method details and submit their order. To make a payment, one can select to user Credit Cards (incl. Google and Apple Pay), as well as GrabPay and Paynow. After the payment has been handled, a confirmation will be shown incl. order and payment details.  
+The web application developed for this demo is a simple web shop that allows customers to buy one Stripe Press book at a time. Customers are able to pick their book of choice, select a payment method, provide the respective payment method details and submit their order. To make a payment, one can select to use Credit Cards (incl. Google and Apple Pay), as well as GrabPay and Paynow. After the payment has been handled, a confirmation will be shown incl. order and payment details.  
 
 
 ## Repo
@@ -49,6 +49,14 @@ The demo is developed as a react-based **Next.js** app using **Tailwind CSS** an
 **Netlify** is a cloud computing company from San Francisco providing web-hosting and automation services primarily for JAMstack websites. Netlify has native support for Next.js and built-in integration with Github. Their service offering allows to have a Github-hosted Next.js app up and running without any configuration changes in less than 5 minutes. Another feature worth-mentioning is Netlify Functions, which allows to setup serverless functions that can be deployed together with the frontend, therefore significantly reducing the effort/overhead in cases where small-scale backend functionality is required. 
 
 ### Payment Element
+The [Stripe Payment Element](https://stripe.com/docs/payments/payment-element) is used to collect payment information in a PCI compliant way. The integration follows the steps described in [this article](https://stripe.com/docs/payments/accept-a-payment?ui=elements). The Payment Element is rendered in an iframe and securely transmits sensitive information (such as credit card details) to Stripe. The component needs a `payment_intent_client_secret` when initialized. This client secret is used to map the collected payment information to a `PaymentIntent`.  Once the user triggers to submit the data, the Payment Element transmits the payment information to Stripe to process and confirm the payment. 
+
+<p align="center">
+<img src="./doc/paymentElement_flow.png" >
+</p>
+
+
+The Element also carries out certain client side validations, such as checking the credit card number, expiration dates, etc. The appearance API was used to make slight changes to the Element UI to be more in line with the overall UI of the demo app.
 
 
 ### API Calls
@@ -83,11 +91,11 @@ Amount, currency, and metadata are passed in as parameters by the frontend. By s
 <img src="./doc/apiflow_getPaymentIntentDetails.png" >
 </p>
 
-The call to `/getPaymentIntentDetails` is made after the Payment Element redirected the user and is purely for informational purposes. The frontend passes the ID of the `PaymentIntent` to the Netlify Functions Backend and the Stripe SDK retrieves the `PaymentIntent`, afterwards the entire object is passed back to the Frontend. The Frontend uses this information to evaluate the status of the payment and to details of the payment method that was used. 
+The call to `/getPaymentIntentDetails` is made after the Payment Element redirected the user and is purely for informational purposes. The frontend passes the ID of the `PaymentIntent` to the Netlify Functions Backend and the Stripe SDK retrieves the `PaymentIntent`, afterwards the entire object is passed back to the Frontend. The Frontend uses this information to evaluate the status of the payment and to show details of the payment method used to make the payment. 
 
 
 ### User flow
-As the app only allows to buy one book at a time, the user flow is very straightforward. A user will select a book and then continues to make payment. A success page with payment and order details is shown if the payment is successful. In case the payment fails, the user will be redirected to an error page where they can opt to go back to the Checkout page  (with their product still selected) to re-enter payment method details or select another payment method. The previously generated payment intent will be reused, if the users opts to try again.
+As the app only allows to buy one book at a time, the user flow is very straightforward. A user will select a book and then continues to make payment. A success page with payment and order details is shown if the payment is successful. In case the payment fails, the user will be redirected to an error page where they can opt to go back to the Checkout page (with their product still selected) to re-enter payment method details or select another payment method. The previously generated payment intent will be reused, if the users opts to try again.
 
 <p align="center">
 <img src="./doc/userflow_overview.png" height="650px">
