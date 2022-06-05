@@ -49,6 +49,13 @@ The demo is developed as a react-based **Next.js** app using **Tailwind CSS** an
 **Netlify** is a cloud computing company from San Francisco providing web-hosting and automation services primarily for JAMstack websites. Netlify has native support for Next.js and built-in integration with Github. Their service offering allows to have a Github-hosted Next.js app up and running without any configuration changes in less than 5 minutes. Another feature worth-mentioning is Netlify Functions, which allows to setup serverless functions that can be deployed together with the frontend, therefore significantly reducing the effort/overhead in cases where small-scale backend functionality is required. 
 
 ### Payment Element
+
+<p align="center">
+<img src="./doc/paymentElement.png" width="400" >
+</p>
+
+
+
 The [Stripe Payment Element](https://stripe.com/docs/payments/payment-element) is used to collect payment information in a PCI compliant way. The integration follows the steps described in [this article](https://stripe.com/docs/payments/accept-a-payment?ui=elements). The Payment Element is rendered in an iframe and securely transmits sensitive information (such as credit card details) to Stripe. The component needs a `payment_intent_client_secret` when initialized. This client secret is used to map the collected payment information to a `PaymentIntent`.  Once the user triggers to submit the data, the Payment Element transmits the payment information to Stripe to process and confirm the payment. 
 
 <p align="center">
