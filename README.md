@@ -52,11 +52,11 @@ The demo is developed as a react-based **Next.js** app using **Tailwind CSS** an
 
 
 ### API Calls
-The app makes 2 API calls in total during a purchase. The `/createPaymentIntent` call is necessary to create a `PaymentIntent` and to get the `payment_intent_client_secret` that is required to initialize the Payment Element. The call to `/getPaymentIntentDetails` is done to retrieve additional information to be shown to the user to provide a better experience.
-#### Create Payment Intent
+The app makes 2 API calls in total during a purchase. The `/createPaymentIntent` call is necessary to create a [`PaymentIntent`](https://stripe.com/docs/api/payment_intents) and to get the `payment_intent_client_secret` that is required to initialize the Payment Element. The call to `/getPaymentIntentDetails` is done to retrieve additional information to be shown to the user to provide a better experience.
+#### /createPaymentIntent
 
 <p align="center">
-<img src="./doc/apiflow_createPaymentIntent.png" width="770px">
+<img src="./doc/apiflow_createPaymentIntent.png" >
 </p>
 
 
@@ -76,7 +76,15 @@ Amount, currency, and metadata are passed in as parameters by the frontend. By s
 
 
 
-#### Get Payment Intent Details
+#### /getPaymentIntentDetails
+
+
+<p align="center">
+<img src="./doc/apiflow_getPaymentIntentDetails.png" >
+</p>
+
+The call to `/getPaymentIntentDetails` is made after the Payment Element redirected the user and is purely for informational purposes. The frontend passes the ID of the `PaymentIntent` to the Netlify Functions Backend and the Stripe SDK retrieves the `PaymentIntent`, afterwards the entire object is passed back to the Frontend. The Frontend uses this information to evaluate the status of the payment and to details of the payment method that was used. 
+
 
 ### User flow
 As the app only allows to buy one book at a time, the user flow is very straightforward. A user will select a book and then continues to make payment. A success page with payment and order details is shown if the payment is successful. In case the payment fails, the user will be redirected to an error page where they can opt to go back to the Checkout page  (with their product still selected) to re-enter payment method details or select another payment method. The previously generated payment intent will be reused, if the users opts to try again.
@@ -107,5 +115,11 @@ The *Make payment* step can be further broken down into
 #### Discount Codes
 #### Product API
 #### Order API
+#### Error handling
 
 ### Challenges
+
+### References used
+- stripe payment intent api
+- accepting a payment with element
+- styling element
