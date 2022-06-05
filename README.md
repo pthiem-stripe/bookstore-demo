@@ -1,5 +1,25 @@
 # pthiem's Written IE Project 
-The web application developed for this demo is a simple web shop that allows customers to buy one Stripe Press book at a time. Customers are able to pick their book of choice, select a payment method, provide the respective payment method details and submit their order. To make a payment, one can select to use Credit Cards (incl. Google and Apple Pay), as well as GrabPay and PayNow. After the payment has been handled, a confirmation will be shown incl. order and payment details.  
+The web application developed for this demo is a simple web shop that allows customers to buy one Stripe Press book at a time. Customers are able to pick their book of choice, select a payment method, provide the respective payment method details and submit their order. To make a payment, one can select to use Credit Cards (incl. Google and Apple Pay), as well as GrabPay and PayNow. After the payment has been handled, a confirmation will be shown incl. order and payment details. 
+
+  - [Repo](#repo)
+  - [Live Demo](#live-demo)
+  - [Getting Started Locally](#getting-started-locally)
+  - [Solution Details](#solution-details)
+    - [Tech Stack](#tech-stack)
+    - [Payment Element](#payment-element)
+    - [API Calls](#api-calls)
+      - [/createPaymentIntent](#createpaymentintent)
+      - [/getPaymentIntentDetails](#getpaymentintentdetails)
+    - [User flow](#user-flow)
+    - [Extensions & Improvements](#extensions--improvements)
+      - [Cart Functionality](#cart-functionality)
+      - [Customer Accounts](#customer-accounts)
+      - [Use Stripe Customer Objects](#use-stripe-customer-objects)
+      - [Subscriptions](#subscriptions)
+      - [Discount Codes](#discount-codes)
+      - [Error handling](#error-handling)
+      - [Move to a scalable, managed backend](#move-to-a-scalable-managed-backend)
+    - [References used](#references-used)
 
 
 ## Repo
