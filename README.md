@@ -1,4 +1,17 @@
 # pthiem's Written IE Project 
+
+<p align="center">
+<img src="./doc/home.png" >
+</p>
+
+<p align="center">
+<img src="./doc/Cart.png" >
+</p>
+
+<p align="center">
+<img src="./doc/Success.png" >
+</p>
+
 The web application developed for this demo is a simple web shop that allows customers to buy one Stripe Press book at a time. Customers are able to pick their book of choice, select a payment method, provide the respective payment method details and submit their order. To make a payment, one can select to use Credit Cards (incl. Google and Apple Pay), as well as GrabPay and PayNow. After the payment has been handled, a confirmation will be shown incl. order and payment details. 
 
   - [Repo](#repo)
