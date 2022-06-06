@@ -1,7 +1,7 @@
 # pthiem's Written IE Project 
 
 <p align="center">
-<img src="./doc/home.png" >
+<img src="./doc/Home.png" >
 </p>
 
 <p align="center">
