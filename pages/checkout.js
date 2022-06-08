@@ -57,7 +57,7 @@ export default function Home() {
         {
           method: "POST",
           body: JSON.stringify({
-            amount: price * 10,
+            amount: price * 100,
             currency: currency,
             sku: sku,
           }),
